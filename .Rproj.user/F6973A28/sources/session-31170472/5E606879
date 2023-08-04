@@ -3,7 +3,7 @@
     "path": "C:/Users/pjcl/Dropbox/RICLPM2023/docs/index.Rmd",
     "project_path": "docs/index.Rmd",
     "type": "r_markdown",
-    "hash": "3284679770",
+    "hash": "2243041384",
     "contents": "",
     "dirty": false,
     "created": 1691066964550.0,
@@ -12,15 +12,15 @@
     "properties": {
         "source_window_id": "",
         "Source": "Source",
-        "cursorPosition": "1470,3",
-        "scrollLine": "1453"
+        "cursorPosition": "1447,113",
+        "scrollLine": "1434"
     },
     "folds": "",
-    "lastKnownWriteTime": 1691117254,
+    "lastKnownWriteTime": 1691162738,
     "encoding": "UTF-8",
     "collab_server": "",
     "source_window": "",
-    "last_content_update": 1691117254589,
+    "last_content_update": 1691162738356,
     "read_only": false,
     "read_only_alternatives": []
 }

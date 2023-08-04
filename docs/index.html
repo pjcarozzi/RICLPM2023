@@ -29,7 +29,7 @@ class: center, middle, inverse, title-slide
 ### Pía Carozzi (<a href="mailto:pjcarozzi@uc.cl" class="email">pjcarozzi@uc.cl</a>)
 ]
 .date[
-### 2023-08-04 (Actualización: 2023-08-03)
+### 2023-08-04 (Actualización: 2023-08-04)
 ]
 
 ---
@@ -73,6 +73,8 @@ class: inverse, center, middle
 
 ???
 
+
+
 ---
 
 ## Articulo
@@ -87,6 +89,11 @@ Chayinska, Miranda &amp; Gonzalez (2021). A longitudinal study of the bidirectio
 
 
 ???
+
+Tenemos el paper de Roberto, Marìa y Daniel. 
+Como ya mencionò Roberto, el paper busca testear la relaciòn entre la participaciòn polìtica online y la participaciòn offline.
+
+Una mayor participaciòn online tiene impacto sobre la participaciòn offline, o viceversa, o son recìprocas.
 
 ---
 
@@ -1128,6 +1135,19 @@ class: inverse, center, middle
 &lt;img src="assets/5_hypothesis.png" alt="Hipotesis en torno a las relaciones entre Participación Offline y Participación On-line" width="90%" /&gt;
 &lt;p class="caption"&gt;Hipotesis en torno a las relaciones entre Participación Offline y Participación On-line&lt;/p&gt;
 &lt;/div&gt;
+
+???
+
+Hipotesis del paper:
+
+A. La hipòtesis de independencia: No hay una relaciòn de influencia entre ambas variables
+
+B. Participaciòn offline tiene un impacto sobre la participaciòn online.
+
+C. Facilitaciòn. La participaciòn online influye en offline.
+
+D. Reciprocidad.
+
 ---
 
 ## Modelos anidados
@@ -2254,6 +2274,8 @@ kable(param[op=="~~" &amp; rhs %in% c("RI_x","RI_y"), !"label"], digits = 3)
 
 Ambos interceptos aleatorios tienen una varianza significativa. Esto implica que hay diferencias estables, entre individuos, respecto a sus puntajes esperados en participación off-line y on-line.
 
+--
+
 Si la varianza no fuera distinta de 0, querría decir que han muy poca diferencias estables entre unidades y que cada individuo fluctúa en torno a la misma gran media en el tiempo.
 
 ---
@@ -2269,7 +2291,7 @@ Si la varianza no fuera distinta de 0, querría decir que han muy poca diferenci
 
 .pull-rightadd[ 
 
-La covarianza entre los interceptos aleatorios es significativa `\((.202, SE=.015)\)`, lo que sugiere que los individuos que tienen una alta participación online también tienen una alta participación off-line.
+La covarianza entre los interceptos aleatorios es significativa `\((.186, SE=.017)\)`, lo que sugiere que los individuos que tienen una alta participación online también tienen una alta participación off-line.
 
 ]
 ---
@@ -2348,7 +2370,7 @@ Los coeficientes indican el grado en el cual una variable continua incrementánd
 
 ##### **Efectos autorregresivos**: 
 
-Tanto para participación off-line como para participación online son significativos (Off-line: `\(\alpha_{t}=0.152; SE=.022\)` On-line: `\(\delta_{t}=0.142; SE=.022\)`). 
+Tanto para participación off-line como para participación online son significativos (Off-line: `\(\alpha_{t}=0.155; SE=.025\)` On-line: `\(\delta_{t}=0.142; SE=.023\)`). 
 
 ---
 
@@ -2363,9 +2385,14 @@ Tanto para participación off-line como para participación online son significa
 
 .pull-rightadd[ 
 
-Una desviación de un punto sobre el nivel promedio de los individuos en participación off-line persiste en la siguiente medición como una desviación positiva de 0.155 puntos respecto a su puntaje esperado. En el caso de la participación on-line, una desviación de un punto sobre el nivel promedio individual persiste durante la siguiente medición como una desviación positiva de 0.142 sobre el nivel promedio individual.
+Una desviación de un punto sobre el nivel promedio de los individuos en participación off-line persiste en la siguiente medición como una desviación positiva de 0.155 puntos respecto a su puntaje esperado. 
 
+{{content}}
 ]
+
+--
+
+En el caso de la participación on-line, una desviación de un punto sobre el nivel promedio individual persiste durante la siguiente medición como una desviación positiva de 0.142 sobre el nivel promedio individual.
 
 ---
 
@@ -2441,7 +2468,9 @@ kable(param[op=="~" &amp; rhs %in% c("cx1","cy1") &amp; lhs %in% c("cx2","cy2"),
 
 ##### **Efectos cross-lagged**: 
 
-Los efectos cross-lagged nos muestran que existen efectos longitudinales recíprocos intra-individuo de la participación off-line sobre la participación on-line ( `\(\gamma_{t}=0.079; SE=0.023\)` ), y de la participación on-line sobre la participación off-line ( `\(\beta_{t}=0.022; SE=0.011\)` ).
+Los efectos cross-lagged nos muestran que existen efectos longitudinales intra-individuo de la participación off-line sobre la participación on-line  `\((\gamma_{t}=0.061; SE=0.026, p=.018)\)`.
+
+No se observa un efecto longitudinal intra-individuo de la participación on-line sobre la participación off-line `\((\beta_{t}=0.013; SE=0.011, p=.266)\)`.
 
 ---
 
@@ -2456,7 +2485,7 @@ Los efectos cross-lagged nos muestran que existen efectos longitudinales recípr
 
 .pull-rightadd[ 
 
-Una desviación de un punto sobre el nivel promedio de los individuos en participación off-line predice una desviación positiva de 0.079 en la participación on-line durante la siguiente medición, controlando por las desviaciones respecto al puntaje esperado en participación on-line. Correspondientemente, una desviación de un punto sobre el nivel promedio individual en participación on-line se asocia a una desviación positiva de 0.022 en la participación off-line durante la siguiente medición, controlando por las desviaciones respecto al puntaje esperado en participación off-line.
+Una desviación de un punto sobre el nivel promedio de los individuos en participación off-line predice una desviación positiva de 0.061 en la participación on-line durante la siguiente medición, controlando por las desviaciones respecto al puntaje esperado en participación on-line. 
 
 ]
 
