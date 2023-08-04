@@ -50,11 +50,43 @@ class: center, middle, inverse, title-slide
 
 ### 5. Referencias
 
+???
+
+### 1. Modelo básico
+Repaso muy breve.
+
+### 2. Estimación
+Temas de estimación en R.
+
+### 3. Modelos anidados
+Estrategia de modelos anidados, comparaciones de bondad de ajuste
+
+### 4. Interpretación
+Cómo interpretamos nuestros resultados.
+
+### 5. Referencias
+
 ---
 
 class: inverse, center, middle
 
 # Modelo
+
+???
+
+Recordemos las diferencias y similitudes entre los RI y los CLPM
+
+- Ambos buscan dar cuenta de los mecanismos de influencia recíproca entre variables.
+
+- La diferencia: manera en la que tratan la estabilidad temporal:
+   - CLMP asume que la estabilidad temporal está siendo estimada a través de la 
+   inclusión de los parámetros autorregresivos, como si todos los individuos estuvieran variando
+   respecto a una misma media.
+   - El RI da cuenta de dos tipos de estabilidad o varianza:
+     - Estabilidad entre-individuos: aquellos rasgos que se mantienen estables
+     en el periodo de medición y que dan cuenta de las diferencias entre los individuos de
+     la muestra.
+     - Variabilidad intra-individuos: Lo que nos interesa modelar en el marco del RI, el cambio intra-individual.
 
 ---
 
@@ -73,7 +105,9 @@ class: inverse, center, middle
 
 ???
 
+Usaremos en esta 2da parte datos de elsoc, especificamente de las 5 olas del 2016 al 2021.
 
+Se pueden obtener directamente del dataverse.
 
 ---
 
@@ -90,10 +124,11 @@ Chayinska, Miranda &amp; Gonzalez (2021). A longitudinal study of the bidirectio
 
 ???
 
-Tenemos el paper de Roberto, Marìa y Daniel. 
-Como ya mencionò Roberto, el paper busca testear la relaciòn entre la participaciòn polìtica online y la participaciòn offline.
+También vamos a tener como punto de partida el paper de Roberto, Marìa y Daniel,
+que presentó Roberto en la primera parte del curso.
 
-Una mayor participaciòn online tiene impacto sobre la participaciòn offline, o viceversa, o son recìprocas.
+En este paper se está testeando distintas hipótesis respecto a la relación entre la participaciòn polìtica online y la participaciòn offline (en acciones colectivas).
+
 
 ---
 
@@ -119,6 +154,9 @@ Utilizamos las siguientes variables:
    
 
 ???
+
+De los datos de ELSOC usamos las siguientes variables para poder ejemplificar 
+el modelo básico de Random Intercept.
 
 ---
 
@@ -147,6 +185,8 @@ Utilizamos las siguientes variables:
 
 
 ???
+
+
 
 ---
 
@@ -180,6 +220,8 @@ Componente **between**: desviaciones del individuo `\(i\)`, en términos de su p
 
 ???
 
+El componente between recoge las diferencias entre individuos.
+
 ---
 
 ## Componente within
@@ -212,6 +254,10 @@ Constituyen las **fluctuaciones intra-persona**, el componente _within_.
 
 ???
 
+Componente within. Cambio intraindividual.
+
+Variables latentes que representan las desviaciones temporales de cada individuo respecto a sus puntajes esperados.
+
 ---
 
 ## Componente within
@@ -241,6 +287,12 @@ Constituyen las **fluctuaciones intra-persona**, el componente _within_.
 
 ???
 
+Tenemos algunos supuestos.
+- los componentes within están correlacionados entre si en cada ola.
+- en la ola 1, desde la ola 2 estan correlacionados los residuos.
+
+- los residuos `\(u_{it}\)` y `\(v_{it}\)` están normalmente distribuidos
+
 ---
 
 class: inverse, center, middle
@@ -259,6 +311,12 @@ Yves Rosseel (2012). lavaan: An R Package for Structural Equation Modeling.
 &lt;/div&gt;
 
 
+
+???
+
+Para estimar RI usaremos el paquete lavaan de Yves Rosseel
+
+Multiples tipos de modelos SEM, factorial, CLPM y RI.
 
 ---
 
@@ -307,6 +365,11 @@ En R, los RI-CLPM pueden ser estimados con la librería `lavaan` (Rosseel,2012).
 
 ???
 
+La estimación se basa en la sintaxis de modelo de lavaan y sus distintos tipos de fórmula.
+Definidos por estos operadores.
+
+La tilde ondulada se llama virgulilla!!!
+
 ---
 
 ## Ejemplo sintaxis
@@ -333,6 +396,12 @@ modelo &lt;- '
                f1 ~ 1
           '     
 ```
+
+???
+
+Estos operadores nos sirven para componer nuestra sintaxis de modelo.
+
+Este es un ejemplo.
 
 ---
 
@@ -362,6 +431,11 @@ rm(elsoc_long_2016_2021,old,new)
 elsoc &lt;- as.data.frame(elsoc)
 ```
 
+???
+
+Pasos previos
+data.table para manejar los datos.
+
 ---
 
 ## Descriptivos
@@ -388,6 +462,10 @@ summarytools::descr(elsoc[-1], order="p", stats = "common",
 | **edad** | 46.09 |   15.29 | 18.00 |  46.00 | 88.00 | 2927.00 |     99.97 |
 | **educ** |  5.26 |    2.20 |  1.00 |   5.00 | 10.00 | 2925.00 |     99.90 |
 | **sexo** |  1.60 |    0.49 |  1.00 |   2.00 |  2.00 | 2927.00 |     99.97 |
+
+???
+
+Breve descripción de los datos que estamos usando
 
 ---
 
@@ -445,12 +523,9 @@ between &lt;- '
 
 ???
 
-Los interceptos aleatorios son especificados creando variables latentes, con las medidas repetidas en `\(t\)` como indicadores. Las cargas factoriales son fijadas en 1 porque RI-CLPM se basa en el supuesto de que los interceptos aleatorios tienen igual influencia en cada ocasión. Se asume que los interceptos aleatorios están correlacionados entre si. 
+Los interceptos aleatorios son especificados creando variables latentes, con las medidas repetidas en `\(t\)` como indicadores. 
 
-
-Supuestos: 
-- Los RI tienen igual influencia en cada ocasión. 
-- Los RI están correlacionados entre si. 
+Las cargas factoriales son fijadas en 1 porque RI-CLPM se basa en el supuesto de que los interceptos aleatorios tienen igual influencia en cada ocasión. Se asume que los interceptos aleatorios están correlacionados entre si. 
 
 ---
 
@@ -542,6 +617,11 @@ efectos  &lt;- '
 
 ???
 
+Estimamos los efectos
+
+- Autorregresivos: de una variable en el periodo anterior sobre el periodo siguiente
+
+- Crosslag: Efecto de una variable independiente en t sobre la dependiente en t+1, o el recíproco.
 
 ---
 
@@ -602,6 +682,7 @@ covarianzas  &lt;- '
 
 ???
 
+Primera ola exógena (nota mental):
 Las observaciones por lo general empiezan en un punto arbitrario del tiempo durante un proceso en desarrollo, por lo que no existen razones para asumir que están relacionados.
 
 ---
@@ -665,7 +746,14 @@ covarianzas  &lt;- '
 
 ???
 
+Acompañado por nuestras hipótesis, asumimos que los interceptos aleatorios están correlacionados.
+
+No podemos asumir que los RI están correlacionados con la primera ola.
 Las observaciones por lo general empiezan en un punto arbitrario del tiempo durante un proceso en desarrollo, por lo que no existen razones para asumir que están relacionados.
+
+
+Como pueden ver, si bien la sintaxis es larga, cada parte sigue al pie de la letra
+el esquema estadístico que planteo roberto en la primera parte. 
 
 ---
 
@@ -749,6 +837,12 @@ modelo_lavaan &lt;- '
 ```
 ]
 
+
+???
+
+El modelo completo.
+
+
 ---
 
 ## Estimacion
@@ -779,6 +873,16 @@ El estimador *default* de `lavaan` es maximum likelihood (`estimator = "ML"`), p
 --
 
 El comportamiento *default* de de `lavaan` frente a los valores perdidos es listwise deletion. Si los datos son MCAR (missing completely at random) o MAR (missing at random), podemos estimar caso a caso usando full information maximum likelihood para lidiar con los casos perdidos.
+
+???
+
+Nota mental: 
+meanstructure = T, int.ov.free = T, me ahorre pedir que estime los interceptos y le pido que los estime de manera libre.
+
+ML podríamos especificar otros estimadores alternativos. Algunos de ellos exigen datos completos, depende de nuestra estrategia para tratar los casos perdidos. Uso MLR para usar EE robustos. 
+
+Default listwise deletion. Usamos datos longitudinales, probablemente no tenermos datos perdidos at random. 
+Se recomienda utilidar Full information ML
 
 ---
 
@@ -1175,6 +1279,14 @@ Para testear las hipótesis en torno a la **direccionalidad** de las relaciones 
 --
 
 Para testear la **estabilidad** de los efectos entre los constructos en el tiempo, adicionalmente, comparamos dos versiones de cada uno de estos modelos: Una versión estimada libremente (1) y una versión constriñendo los efectos en el tiempo (2).
+
+???
+
+2 estrategias: 
+- Hipótesis
+- Estabilidad en el tiempo de los efectos
+  - No sabemos si se sostiene este supuesto de estabilidad. Estrategia específica.
+  Fuerzan que estimemos nuestros efectos de manera equivalente entre olas.
 
 ---
 
@@ -2278,6 +2390,11 @@ Ambos interceptos aleatorios tienen una varianza significativa. Esto implica que
 
 Si la varianza no fuera distinta de 0, querría decir que han muy poca diferencias estables entre unidades y que cada individuo fluctúa en torno a la misma gran media en el tiempo.
 
+???
+
+Si no fuera significativa. 
+En ese caso, no existen grandes diferencias entre estimar un CLPM y un RI. Obtendríamos resultados bastantes similares. 
+
 ---
 
 ## Interpretacion
@@ -2294,6 +2411,11 @@ Si la varianza no fuera distinta de 0, querría decir que han muy poca diferenci
 La covarianza entre los interceptos aleatorios es significativa `\((.186, SE=.017)\)`, lo que sugiere que los individuos que tienen una alta participación online también tienen una alta participación off-line.
 
 ]
+
+???
+
+Siempre estamos hablando de rasgos invariantes en el tiempo en cada individuo (between). 
+
 ---
 
 ## Interpretacion
@@ -2372,6 +2494,10 @@ Los coeficientes indican el grado en el cual una variable continua incrementánd
 
 Tanto para participación off-line como para participación online son significativos (Off-line: `\(\alpha_{t}=0.155; SE=.025\)` On-line: `\(\delta_{t}=0.142; SE=.023\)`). 
 
+???
+
+
+
 ---
 
 ## Interpretacion
@@ -2393,6 +2519,10 @@ Una desviación de un punto sobre el nivel promedio de los individuos en partici
 --
 
 En el caso de la participación on-line, una desviación de un punto sobre el nivel promedio individual persiste durante la siguiente medición como una desviación positiva de 0.142 sobre el nivel promedio individual.
+
+???
+
+Cuanto de la desviación pasa de una ola a la siguiente. Cambio intraindividual, habiendo controlado por las diferencias individuales estables.
 
 ---
 
